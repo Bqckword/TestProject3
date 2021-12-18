@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DriveDistance;
+import frc.robot.commands.MiniBotChallengeComplete;
 import frc.robot.commands.TurnDegrees;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -12,6 +13,10 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureButtonBindings();
+  }
+
+  public void doMiniBotChallenge() {
+    new MiniBotChallengeComplete().schedule();
   }
 
   private void configureButtonBindings() {
