@@ -4,9 +4,12 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.DriveDistance;
+import frc.robot.commands.TestCommand;
+import frc.robot.commands.TurnDegrees;
 import frc.robot.subsystems.DriveSubsystem;
 
 /**
@@ -16,18 +19,20 @@ import frc.robot.subsystems.DriveSubsystem;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  public final DriveSubsystem train = new DriveSubsystem();
+  public final DriveSubsystem drive = new DriveSubsystem();
+  public final XboxController controller = new XboxController(0);
 
   public RobotContainer() {
     configureButtonBindings();
   }
 
   public Command getAutonomousCommand() {
-    return new DriveDistance(20, -0.5, train);
+    return new DriveDistance(20, -0.5, drive);
   }
 
   private void configureButtonBindings() {
-    var command = new DriveDistance(10, 0.5, train);
-    SmartDashboard.putData("Drive distance", command);
+    SmartDashboard.putData("Drive distance", new DriveDistance(10, 0.5, drive));
+    SmartDashboard.putData("Test", new TestCommand(drive));
+    SmartDashboard.putData("Turn", new TurnDegrees(90, 0.5, drive));
   }
 }

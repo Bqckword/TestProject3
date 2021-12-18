@@ -1,16 +1,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.ControllerDrive;
 import frc.robot.commands.DriveDistance;
 
 public class Robot extends TimedRobot {
-  private RobotContainer robotContainer;
-  private Command autonomousCommand;
+  private RobotContainer robotContainer = new RobotContainer();
 
   @Override public void robotInit() {
-      robotContainer = new RobotContainer();
+      
   }
 
   @Override public void robotPeriodic() {
@@ -26,7 +25,8 @@ public class Robot extends TimedRobot {
   }
 
   @Override public void autonomousInit() {
-    new DriveDistance(25, 0.5, robotContainer.train).schedule();
+    new DriveDistance(25, 1, robotContainer.drive).schedule();
+    // PIDController
   }
 
   @Override public void autonomousPeriodic() {
@@ -38,7 +38,8 @@ public class Robot extends TimedRobot {
   }
 
   @Override public void teleopPeriodic() {
-   
+      // new ControllerDrive().schedule();
+      robotContainer.drive.tankDrive(robotContainer.controller.getY(), robotContainer.controller.getX());
   }
 
   @Override public void testInit() {

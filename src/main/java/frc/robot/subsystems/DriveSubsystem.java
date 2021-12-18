@@ -33,6 +33,10 @@ public class DriveSubsystem extends SubsystemBase {
     diffDrive.arcadeDrive(xSpeed, zRotation);
   }
 
+  public void tankDrive(double leftSpeed, double rightSpeed) {
+    diffDrive.tankDrive(leftSpeed, rightSpeed);
+  }
+
   public void resetEncoders() {
     leftEncoder.reset();
     rightEncoder.reset();

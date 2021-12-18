@@ -21,7 +21,6 @@ public class DriveDistance extends CommandBase {
     }
 
     @Override public void execute() {
-        // System.out.println("Executing arcadeDrive()");
         train.arcadeDrive(speed, 0);
     }
 
